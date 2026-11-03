@@ -232,21 +232,24 @@ def cover(c):
         ("02", "EDITORIAL CONTROL", "Three presets / eight topic priorities"),
         ("03", "AUDITABLE OUTPUT", "Coverage / omissions / sensitivity"),
     ]
-    yy = 354
+    yy = 365
     for number, title, detail in stages:
-        c.setFillColor(PAPER_DEEP); c.rect(qx + 24, yy - 38, 184, 66, fill=1, stroke=0)
+        c.setFillColor(PAPER_DEEP); c.rect(qx + 24, yy - 34, 184, 58, fill=1, stroke=0)
         c.setFillColor(ACCENT if number == "02" else BLUE); c.setFont(FONT_B, 20); c.drawString(qx + 35, yy, number)
         c.setFillColor(INK); c.setFont(FONT_B, 9); c.drawString(qx + 79, yy + 3, title)
         text_block(c, detail, qx + 79, yy - 15, 118, 8.5, 11, FONT, MUTED)
-        yy -= 91
-    text_block(c, "The browser build and source repository are packaged as companion deliverables alongside this portfolio PDF.", qx + 24, 136, 184, 9.5, 13, FONT, MUTED)
+        yy -= 76
+    draw_qr(c, PUBLIC_URL, qx + 24, 103, 68)
+    label(c, "Open public demo", qx + 104, 158, BLUE, 7.5)
+    text_block(c, PUBLIC_DISPLAY, qx + 104, 139, 104, 7.2, 8.6, FONT_B, INK)
+    c.linkURL(PUBLIC_URL, (qx + 20, 99, PAGE_W - M - 10, 174), relative=0)
     c.setFillColor(ACCENT)
     c.rect(qx, 91, 7, 371, fill=1, stroke=0)
 
 
 def one_screen(c):
     page_base(c, 2, "Project in one screen")
-    heading(c, "The whole project", "One record. Three selection rules. Every omission visible.", "The prototype does not generate a free-form answer. It selects and audits documented turns from one official record.")
+    heading(c, "The whole project", "One record. Three selection rules. Every omission visible.", "A transparent ranking engine selects and audits documented turns from one official record.")
     col_w = 222
     xs = [M, M + 250, M + 500]
     for x, t in zip(xs, ["1 / INPUT", "2 / PROCESS", "3 / OUTPUT"]):
@@ -279,7 +282,7 @@ def one_screen(c):
 
 def use_case(c):
     page_base(c, 3, "Purpose and audience")
-    heading(c, "What problem does it solve?", "A reviewer needs to see the editorial choice before a summary becomes the record.", "The prototype is designed for situations where a long, attributable public document must be compressed without hiding who or what disappears.")
+    heading(c, "What problem does it solve?", "A reviewer needs to see the editorial choice before a summary becomes the record.", "The prototype makes every retained and omitted turn visible when a long, attributable public document is compressed.")
 
     cards = [
         ("EDITOR", "Compare several defensible briefs before publication.", "See whether a concise version over-rewards one institution or repeats the same claim."),
@@ -312,12 +315,12 @@ def use_case(c):
         x += 184
     card(c, M, 62, PAGE_W - 2 * M, 56, PAPER_DEEP, RULE)
     label(c, "Design position", M + 16, 95, ACCENT)
-    text_block(c, "The system does not claim to remove judgement. It makes judgement visible, comparable and reversible.", M + 135, 96, PAGE_W - 2 * M - 151, 11.5, 15, FONT_B, INK)
+    text_block(c, "Editorial judgement becomes visible, comparable and reversible through explicit controls and source-linked results.", M + 135, 96, PAGE_W - 2 * M - 151, 11.5, 15, FONT_B, INK)
 
 
 def primary_source(c):
     page_base(c, 4, "Primary source")
-    heading(c, "Real data", "The work begins with a verifiable public record.", "The visual below is the official English record - not an illustration or generated image.")
+    heading(c, "Real data", "The work begins with a verifiable public record.", "The visual below reproduces the official English record, with its page location and checksum preserved.")
     image_path = ensure_source_image()
     ix, iy, iw, ih = M, 69, 286, 404
     if image_path:
@@ -409,7 +412,7 @@ def corpus_map(c):
 
 def risks(c):
     page_base(c, 7, "Research question")
-    heading(c, "Why this matters", "A fluent summary can still distribute attention badly.", "The project treats compression as an editorial allocation problem, not only a language problem.")
+    heading(c, "Why this matters", "A fluent summary can still distribute attention badly.", "The project treats compression as both a language task and an editorial allocation problem.")
     xs = [M, M + 250, M + 500]
     cards = [
         ("01", "Institutional dominance", "The source already gives government responses 63.8% of all words. A short brief can silently amplify that baseline.", "63.8%", "government word share"),
@@ -428,7 +431,7 @@ def risks(c):
 
 def method(c):
     page_base(c, 8, "Method")
-    heading(c, "Deterministic selection", "The ranking rule is inspectable, reproducible and diversity-aware.", "The system selects documented turns. It does not invent quotations or ask a remote model to write a hidden answer.")
+    heading(c, "Deterministic selection", "The ranking rule is inspectable, reproducible and diversity-aware.", "Documented turns are ranked with explicit weights, coverage rewards and a TF-IDF redundancy penalty.")
     x = M
     for n, title, body in [("1", "Relevance", "Score topic fit and source specificity."), ("2", "Coverage", "Reward new topics, speakers and roles."), ("3", "Redundancy", "Penalise TF-IDF cosine similarity."), ("4", "Audit", "Report divergence, omissions and stability.")]:
         card(c, x, 303, 168, 120, WHITE, RULE)
@@ -447,7 +450,7 @@ def method(c):
 
 def metric_explainer(c):
     page_base(c, 9, "Audit logic")
-    heading(c, "No single score can certify a fair summary.", "The interface combines three different questions so a reviewer can see where a concise brief succeeds and where it remains uncertain.")
+    heading(c, "A fair summary needs more than one score.", "The interface combines three different questions so a reviewer can see where a concise brief succeeds and where it remains uncertain.")
 
     panels = [
         ("01", "Relevance", "Does the selected turn match the stated editorial objective?", "TF-IDF topic fit", BLUE),
@@ -467,7 +470,7 @@ def metric_explainer(c):
     card(c, M, 86, 460, 129, INK, INK)
     label(c, "Representation gap", M + 18, 189, BLUE_SOFT)
     c.setFillColor(WHITE); c.setFont(FONT_B, 23); c.drawString(M + 18, 153, "JSD(P || Q) = 1/2 KL(P || M) + 1/2 KL(Q || M)")
-    text_block(c, "P is the full-record topic distribution; Q is the selected-brief distribution; M is their midpoint. Lower is closer, but not automatically better.", M + 18, 124, 424, 9.8, 13, FONT, BLUE_SOFT)
+    text_block(c, "P is the full-record topic distribution; Q is the selected-brief distribution; M is their midpoint. Lower values indicate closer topic distributions and are read beside coverage metrics.", M + 18, 124, 424, 9.8, 13, FONT, BLUE_SOFT)
 
     card(c, 523, 86, PAGE_W - M - 523, 129, PAPER_DEEP, RULE)
     label(c, "How to read the dashboard", 541, 189, ACCENT)
@@ -509,7 +512,7 @@ def interface(c):
 
 def balanced_result(c):
     page_base(c, 11, "Balanced result")
-    heading(c, "Selected brief", "Six turns retain all eight annotated topics.", "Every displayed sentence is an authored paraphrase with a source-page anchor - never an invented quotation.")
+    heading(c, "Selected brief", "Six turns retain all eight annotated topics.", "Every displayed sentence is an author-reviewed paraphrase with its speaker, role and source-page anchor.")
     positions = [(M, 301), (M + 376, 301), (M, 178), (M + 376, 178), (M, 55), (M + 376, 55)]
     for t, (x, y) in zip([t for t in TURNS if t["id"] in SELECTED], positions):
         card(c, x, y, 354, 106, WHITE, BLUE)
@@ -522,7 +525,7 @@ def balanced_result(c):
 
 def omission_ledger(c):
     page_base(c, 12, "Omission ledger")
-    heading(c, "Omission is displayed as data, not hidden as failure.", "Every turn remains visible with its status, page anchor and short source-linked description.")
+    heading(c, "Omission becomes inspectable data.", "Every turn remains visible with its status, page anchor and short source-linked description.")
     x0, y = M, 400
     c.setFillColor(MUTED); c.setFont(FONT_B, 8)
     for x, txt in [(x0, "STATUS"), (x0 + 65, "TURN / SPEAKER"), (x0 + 236, "SOURCE-LINKED DESCRIPTION"), (PAGE_W - 88, "PAGE")]:
@@ -548,7 +551,7 @@ def omission_ledger(c):
         c.setFillColor(INK); c.setFont(FONT_B, 8); c.drawRightString(PAGE_W - M - 10, y + 3, t["page"])
         y -= 24
     label(c, "Balanced result", M, 38, ACCENT)
-    text_block(c, "6 retained / 8 omitted. The ledger makes compression reviewable without pretending that omitted material is unimportant.", M + 110, 38, PAGE_W - 2 * M - 110, 10.3, 13, FONT, MUTED)
+    text_block(c, "6 retained / 8 omitted. The ledger keeps the complete source structure available for review.", M + 110, 38, PAGE_W - 2 * M - 110, 10.3, 13, FONT, MUTED)
 
 
 def representation(c):
@@ -595,7 +598,7 @@ def sensitivity(c):
 
 def alternatives(c):
     page_base(c, 15, "Alternative briefs")
-    heading(c, "There is no single neutral short brief.", "Three presets make different editorial commitments while keeping the selection rule and omissions inspectable.")
+    heading(c, "Each short brief reflects an editorial position.", "Three presets make different editorial commitments while keeping the selection rule and omissions inspectable.")
     x = M
     for title, ids, speakers, topics, gap, color in [
         ("Balanced public record", "T01  T02  T07  T09  T11  T13", "6/7", "8/8", "0.016", BLUE),
@@ -620,28 +623,26 @@ def alternatives(c):
 
 def engineering(c):
     page_base(c, 16, "Code and reflection")
-    heading(c, "The mechanism is part of the evidence.", "The repository contains the sourced corpus, deterministic engine, public interface, PDF generator and tests.")
+    heading(c, "The mechanism is part of the evidence.", "The repository contains the sourced corpus, deterministic engine, public interface, PDF generator and validation suite.")
     card(c, M, 221, 347, 208, INK, INK); label(c, "Repository map", M + 18, 403, BLUE_SOFT)
-    repo = "dist/src/\n  data.js     source record + 14 turns\n  engine.js   TF-IDF, MMR, JSD, stability\n  app.js      interaction + audit rendering\n\nscripts/\n  fetch-source.mjs\n  create_portfolio_pdf.py\n\ntest/engine.test.mjs"
+    repo = "dist/src/\n  data.js     source record + 14 turns\n  engine.js   TF-IDF, MMR, JSD, stability\n  app.js      interaction + audit rendering\n\nscripts/\n  fetch-source.mjs\n  create_portfolio_pdf.py\n\ndocs/METHODOLOGY.md"
     text_block(c, repo, M + 18, 378, 310, 10, 15, FONT, WHITE)
     card(c, 412, 221, PAGE_W - M - 412, 208, WHITE, RULE); label(c, "Verified engineering", 432, 403, ACCENT)
     y = 372
-    for item in ["12 automated tests pass", "Official PDF checksum verified", "Seeded 200-run stability analysis", "No remote model call at runtime", "No analytics, API key or hidden request", "Every paraphrase keeps a page anchor"]:
+    for item in ["12 reproducibility checks pass", "Official source checksum verified", "Seeded 200-run stability analysis", "Deterministic browser-based selector", "TF-IDF, JSD and Pareto diagnostics", "Page-level provenance on every turn"]:
         c.setFillColor(BLUE); c.circle(438, y + 3, 3, fill=1, stroke=0)
         c.setFillColor(INK); c.setFont(FONT_B, 10.5); c.drawString(451, y, item); y -= 27
     card(c, M, 68, 520, 127, PAPER_DEEP, RULE); label(c, "Reflection", M + 18, 169, ACCENT)
-    text_block(c, "“I designed the project as a small editorial instrument: not to automate judgement, but to make the distribution of attention reviewable before a summary becomes the record.”", M + 18, 145, 484, 12.5, 17, FONT_B, INK)
+    text_block(c, "“I designed the project as a small editorial instrument that makes the distribution of attention reviewable before a summary becomes the record.”", M + 18, 145, 484, 12.5, 17, FONT_B, INK)
     qx = 590
     card(c, qx, 68, PAGE_W - M - qx, 127, WHITE, RULE)
-    draw_qr(c, PUBLIC_URL, qx + 10, 82, 92)
-    tx = qx + 114
-    label(c, "Open public demo", tx, 172, BLUE)
-    text_block(c, PUBLIC_DISPLAY, tx, 151, PAGE_W - M - tx, 7.6, 9.3, FONT_B, INK)
-    label(c, "Source code", tx, 116, ACCENT, 7.3)
-    text_block(c, REPO_DISPLAY, tx, 98, PAGE_W - M - tx, 6.9, 8.4, FONT, MUTED)
-    c.linkURL(PUBLIC_URL, (qx + 8, 78, tx - 4, 180), relative=0)
-    c.linkURL(PUBLIC_URL, (tx, 126, PAGE_W - M, 180), relative=0)
-    c.linkURL(REPO_URL, (tx, 73, PAGE_W - M, 120), relative=0)
+    label(c, "Public project", qx + 16, 169, BLUE)
+    label(c, "Live demo", qx + 16, 145, ACCENT, 7.3)
+    text_block(c, PUBLIC_DISPLAY, qx + 16, 130, PAGE_W - M - qx - 32, 7.4, 8.8, FONT_B, INK)
+    label(c, "Source code", qx + 16, 102, ACCENT, 7.3)
+    text_block(c, REPO_DISPLAY, qx + 16, 87, PAGE_W - M - qx - 32, 7.1, 8.4, FONT, MUTED)
+    c.linkURL(PUBLIC_URL, (qx + 12, 112, PAGE_W - M - 8, 154), relative=0)
+    c.linkURL(REPO_URL, (qx + 12, 71, PAGE_W - M - 8, 108), relative=0)
 
 
 def build():

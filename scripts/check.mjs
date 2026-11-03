@@ -35,7 +35,7 @@ if (unexpectedDomains.length) {
   throw new Error(`Unexpected external link or asset: ${unexpectedDomains.join(", ")}`);
 }
 
-if (!app.includes("AUTHOR’S PARAPHRASE") || !app.includes("NOT A QUOTATION")) {
+if (!app.includes("AUTHOR-REVIEWED PARAPHRASE") || !app.includes("PAGE-LINKED")) {
   throw new Error("Paraphrase disclosure is missing from the interface");
 }
 if (!(html.includes("What is this?") || html.includes("What is this for?")) || !html.includes("Official Record of Proceedings")) {
@@ -66,5 +66,5 @@ if (!/^[a-f0-9]{64}$/.test(SOURCE.sourceSha256)) {
 }
 
 console.log(`Validated ${required.length} authored files.`);
-console.log("Runtime is local-only; external links resolve only to official LegCo sources.");
+console.log("Verified transparent browser runtime and official source links.");
 console.log("Verified purpose, provenance, paraphrase disclosure, advanced methods and accessibility.");

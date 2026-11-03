@@ -323,4 +323,3 @@ footer { display: flex; justify-content: space-between; gap: 1rem; padding: 1.2r
   .audit-workbench { grid-template-columns: 1fr; }
   a { text-decoration: none; }
 }
-

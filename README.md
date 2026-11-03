@@ -2,50 +2,98 @@
 
 **Yuyang Nie · Interactive editorial research prototype · 2026**
 
-[Open the public demonstrator](https://yuyangnie2027.github.io/who-gets-summarized/)
+- Public demonstrator: https://yuyangnie2027.github.io/who-gets-summarized/
+- Public source repository: https://github.com/yuyangnie2027/who-gets-summarized
 
 “Who Gets Summarized?” is a provenance-first instrument for examining what
-disappears when a long public record becomes a short policy brief. It uses the
-Hong Kong Legislative Council’s official English record of the oral question
-“Developing artificial intelligence” from 31 January 2024: 14 substantive
-turns, 7 speakers and 3,463 words across printed pages 49–59.
+disappears when a long public record becomes a short policy brief. It is designed
+for editors, researchers and civic-media teams who want to compare several
+defensible compressions of the same record before publication.
 
-The interface runs entirely in the browser. It does not call a remote model or
-hide the selection rule. Readers can choose an editorial objective, change
-eight topic priorities, inspect retained and omitted turns, and compare source
-coverage with the resulting brief.
+The case study uses the Hong Kong Legislative Council’s official English record
+of the oral question “Developing artificial intelligence” from 31 January 2024.
+The source exchange spans printed pages 49–59 and contains 14 substantive turns,
+7 speakers and 3,463 English words. Government responses account for 63.8% of
+the record’s words.
+
+The interface never presents an authored sentence as a quotation. It stores
+paraphrases beside speaker, role, turn type and printed-page provenance, then
+runs a deterministic selection and audit pipeline in the browser.
+
+## Purpose
+
+Automated summaries are often assessed for fluency and factual correctness.
+This project focuses on an earlier editorial question: which parts of a public
+record receive attention, and which disappear, when a document is compressed?
+
+The prototype supports three actions:
+
+1. select source turns with an explicit editorial objective;
+2. inspect every retained and omitted turn;
+3. compare coverage, redundancy, topic-distribution shift and parameter stability.
+
+It is a research prototype, not a production newsroom system or truth classifier.
+
+## Run
+
+```bash
+npm test
+npm run check
+npm run serve
+```
+
+Open `http://127.0.0.1:4173`.
+
+No API key, build step, analytics package, external font or remote model call is
+required at runtime.
 
 ## Implemented methods
 
-- source-linked turn records with speaker, role, order and printed-page provenance;
-- TF–IDF vectors and cosine-similarity redundancy control;
-- diversity-aware maximal marginal relevance selection;
+- source integrity record with OData identifiers and SHA-256 checksum;
+- speaker-turn segmentation and page-level provenance;
+- eight transparent editorial topic labels;
+- TF–IDF vectors and cosine similarity;
+- multi-objective, diversity-aware MMR selection;
 - speaker, role and topic novelty accounting;
-- Jensen–Shannon divergence between source and brief topic distributions;
-- 200-run seeded sensitivity analysis with turn-inclusion frequency;
-- Pareto comparison across relevance, representation and speaker coverage.
+- Jensen–Shannon divergence between record and brief topic distributions;
+- 200-run seeded sensitivity analysis with turn inclusion frequency;
+- Pareto search across relevance, representation and speaker coverage;
+- deterministic tests for data integrity, provenance and model behaviour.
 
 ## Repository map
 
 ```text
-index.html   research narrative and accessible interface
-styles.css   responsive editorial design system
-app.js       interaction, rendering and audit state
-data.js      source metadata and 14 derived turn records
-engine.js    TF–IDF, MMR, divergence, stability and Pareto analysis
+dist/
+  index.html            research narrative and accessible interface
+  styles.css            responsive editorial design system
+  src/
+    app.js              interaction, rendering and audit state
+    data.js             official source record and 14 derived turns
+    engine.js           TF–IDF, MMR, JSD, stability and Pareto analysis
+docs/
+  METHODOLOGY.md         data pipeline, formulas and limitations
+  PORTFOLIO_STATEMENT.md submission-ready project statement
+  DEMO_SCRIPT.md         concise walkthrough
+  RESEARCH_NOTES.md      design rationale and research lineage
+scripts/
+  fetch-source.mjs      reproducible metadata and source acquisition
+  check.mjs             structural, provenance and offline checks
+  create_portfolio_pdf.py
+test/
+  engine.test.mjs       deterministic data and model tests
 ```
 
-## Source and limitations
+## Primary source
 
-The case record comes from the Legislative Council of the Hong Kong SAR:
+- Legislative Council Official Record of Proceedings, 31 January 2024,
+  “Developing artificial intelligence,” printed pages 49–59.
+- LegCo Hansard Open Data record: Rundown ID `1291567`, Hansard ID `6481`.
+- Stored source PDF SHA-256:
+  `2aa29c311ce071cc196fcf8046345bcfbd93515f541af38af15fea53301a6f0d`.
 
-- [Official English record](https://www.legco.gov.hk/yr2024/english/counmtg/hansard/cm20240131-translate-e.pdf#nameddest=orq05)
-- [Council agenda](https://www.legco.gov.hk/yr2024/english/counmtg/agenda/cm20240131.htm)
-- [Hansard open-data documentation](https://www.legco.gov.hk/en/open-legco/open-data/hansard-database.html)
-
-The dataset stores authored paraphrases and derived measurements, not a
-republished transcript. The prototype audits editorial compression; it is not
-a truth classifier or a claim of political neutrality.
+The distributed dataset contains authored paraphrases and derived measurements,
+not a republished transcript. Readers should use the official record for exact
+wording and full context.
 
 ## Author
 

@@ -115,8 +115,7 @@
 
         <p class="source-note">
           Data note: turn boundaries and word counts were derived from the official English translation.
-          Interface descriptions are authored paraphrases, not quotations. Each one retains its speaker,
-          turn type and printed-page anchor.
+          Interface descriptions are author-reviewed paraphrases with speaker, turn type and printed-page provenance.
         </p>
       </section>
 
@@ -127,8 +126,7 @@
           <p class="section-intro">
             The pipeline is deliberately hybrid: document integrity and segmentation are automated;
             topic labels and paraphrases are reviewed by the author; selection and audit metrics are fully
-            deterministic. This division keeps the experiment reproducible without pretending that editorial
-            judgement can be removed.
+            deterministic. Editorial judgement remains visible through the topic labels, weights and source ledger.
           </p>
         </header>
 
@@ -143,7 +141,7 @@
           </li>
           <li>
             <span>03</span><h3>Annotate</h3>
-            <p>Assign eight transparent topic labels and write source-linked paraphrases. No invented quotation is introduced.</p>
+            <p>Assign eight transparent topic labels and write author-reviewed paraphrases with page-level provenance.</p>
           </li>
           <li>
             <span>04</span><h3>Select</h3>
@@ -171,7 +169,7 @@
           The interface also measures Jensen–Shannon divergence between the topic distribution of the complete
           record and the selected brief. Lower divergence means the brief’s subject mix remains closer to the
           source. Two hundred deterministic weight perturbations estimate whether a selected turn is robust or
-          depends on a narrow parameter choice. These metrics are diagnostics, not claims of political neutrality.
+          depends on a narrow parameter choice. The interface keeps the assumptions behind each metric visible.
         </p>
       </section>
 
@@ -180,8 +178,8 @@
           <p class="section-index">03 / INTERACTIVE AUDIT</p>
           <h2 id="audit-title">Change the brief.<br />Keep the omissions visible.</h2>
           <p class="section-intro">
-            Choose an editorial objective or adjust it manually. The same 14 source turns are re-ranked in the
-            browser; no network request or hidden model call is involved.
+            Choose an editorial objective or adjust it manually. The same 14 source turns are re-ranked instantly
+            in the browser through the visible selection rule.
           </p>
         </header>
 
@@ -250,8 +248,8 @@
             <p class="finding-number">100%</p>
             <h3>Page-level traceability</h3>
             <p>
-              Every displayed paraphrase retains a turn ID, speaker, role and printed-page location. The system
-              never presents a generated sentence as a source quotation.
+              Every displayed paraphrase retains a turn ID, speaker, role and printed-page location for direct
+              comparison with the official record.
             </p>
           </article>
         </div>
@@ -270,9 +268,8 @@
           <p class="section-index">05 / CODE AND REPRODUCIBILITY</p>
           <h2 id="code-title">The mechanism is part<br />of the evidence.</h2>
           <p class="section-intro">
-            The repository contains the sourced data model, deterministic selection engine, stability analysis,
-            Pareto search, interface and tests. Runtime code has no external dependency, analytics package, API
-            key or remote model call.
+            The repository combines a source-linked data model, deterministic selection engine, stability analysis,
+            Pareto search, responsive interface and reproducibility checks.
           </p>
         </header>
 
@@ -294,9 +291,7 @@
 scripts/
 ├── fetch-source.mjs
 ├── check.mjs
-└── create_portfolio_pdf.py
-
-test/engine.test.mjs</code></pre>
+└── create_portfolio_pdf.py</code></pre>
           </div>
         </div>
 
@@ -304,28 +299,28 @@ test/engine.test.mjs</code></pre>
           <article><h3>Source integrity</h3><p>The official PDF checksum, OData identifiers, retrieval date and page anchors are stored beside the derived data.</p></article>
           <article><h3>Representation metric</h3><p>Jensen–Shannon divergence compares full-record and brief topic distributions on a bounded, symmetric scale.</p></article>
           <article><h3>Sensitivity</h3><p>A seeded xorshift generator perturbs weights reproducibly; inclusion frequency exposes unstable selections.</p></article>
-          <article><h3>Test surface</h3><p>Tests cover corpus totals, provenance, determinism, role coverage, redundancy, divergence, stability and Pareto dominance.</p></article>
+          <article><h3>Validation</h3><p>Reproducibility checks cover corpus totals, provenance, ranking, representation, stability and Pareto dominance.</p></article>
         </div>
       </section>
 
       <section class="limits ruled-section" aria-labelledby="limits-title">
         <header class="section-heading">
-          <p class="section-index">06 / LIMITS</p>
-          <h2 id="limits-title">What the prototype<br />does not claim.</h2>
+          <p class="section-index">06 / EDITORIAL PROTOCOL</p>
+          <h2 id="limits-title">How interpretation<br />stays reviewable.</h2>
         </header>
         <div class="limits-grid">
-          <article><h3>Not automatic truth assessment</h3><p>The system ranks documented turns; it does not infer whether a speaker’s claim is correct.</p></article>
-          <article><h3>Not politically neutral</h3><p>Topic labels, paraphrases and metric weights are editorial decisions. The interface exposes them so they can be challenged.</p></article>
-          <article><h3>One translated record</h3><p>The study uses the official English translation of one exchange. It does not generalise to the whole legislature or Chinese-language nuance.</p></article>
-          <article><h3>No false quotation</h3><p>Displayed summaries are labelled paraphrases. Readers must return to the official record for exact wording and context.</p></article>
+          <article><h3>Evidence scope</h3><p>The engine ranks documented turns and compares different allocations of editorial attention.</p></article>
+          <article><h3>Exposed assumptions</h3><p>Topic labels, paraphrases and metric weights remain visible so a reviewer can inspect each decision.</p></article>
+          <article><h3>Language scope</h3><p>The case study uses the official English translation of one Legislative Council exchange.</p></article>
+          <article><h3>Source-linked writing</h3><p>Every author-reviewed paraphrase retains its speaker, role, turn ID and printed-page anchor.</p></article>
         </div>
       </section>
 
       <section class="closing">
         <p class="section-index">REFLECTION</p>
         <blockquote>
-          “I designed the project as a small editorial instrument: not to automate judgement, but to make the
-          distribution of attention reviewable before a summary becomes the record.”
+          “I designed the project as a small editorial instrument that makes the distribution of attention
+          reviewable before a summary becomes the record.”
         </blockquote>
         <div class="closing-meta">
           <p><span>Author</span>Yuyang Nie</p>

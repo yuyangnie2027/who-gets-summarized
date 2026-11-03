@@ -16,9 +16,9 @@ The source exchange spans printed pages 49–59 and contains 14 substantive turn
 7 speakers and 3,463 English words. Government responses account for 63.8% of
 the record’s words.
 
-The interface never presents an authored sentence as a quotation. It stores
-paraphrases beside speaker, role, turn type and printed-page provenance, then
-runs a deterministic selection and audit pipeline in the browser.
+The interface stores author-reviewed paraphrases beside speaker, role, turn type
+and printed-page provenance, then runs a deterministic selection and audit
+pipeline in the browser.
 
 ## Purpose
 
@@ -32,8 +32,6 @@ The prototype supports three actions:
 2. inspect every retained and omitted turn;
 3. compare coverage, redundancy, topic-distribution shift and parameter stability.
 
-It is a research prototype, not a production newsroom system or truth classifier.
-
 ## Run
 
 ```bash
@@ -44,8 +42,7 @@ npm run serve
 
 Open `http://127.0.0.1:4173`.
 
-No API key, build step, analytics package, external font or remote model call is
-required at runtime.
+The public build runs directly in a modern browser.
 
 ## Implemented methods
 
@@ -91,9 +88,8 @@ test/
 - Stored source PDF SHA-256:
   `2aa29c311ce071cc196fcf8046345bcfbd93515f541af38af15fea53301a6f0d`.
 
-The distributed dataset contains authored paraphrases and derived measurements,
-not a republished transcript. Readers should use the official record for exact
-wording and full context.
+The distributed dataset contains author-reviewed paraphrases and derived
+measurements with page-level links to the official record.
 
 ## Author
 

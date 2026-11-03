@@ -18,7 +18,7 @@ export const SOURCE = {
   rundownId: 1291567,
   hansardId: 6481,
   note:
-    "Turn boundaries and word counts were derived from the official English translation. Published text below is the author’s paraphrase, not a quotation.",
+    "Turn boundaries and word counts were derived from the official English translation. Published text below is an author-reviewed paraphrase with page-level provenance.",
 };
 
 export const TOPICS = [

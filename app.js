@@ -94,7 +94,7 @@ function renderBrief(selected, audit, objective) {
           <div>
             <h4>${turn.speakerLabel} · ${turn.turnType}</h4>
             <p>${turn.summary}</p>
-            <span class="paraphrase-tag">AUTHOR’S PARAPHRASE · NOT A QUOTATION</span>
+            <span class="paraphrase-tag">AUTHOR-REVIEWED PARAPHRASE · PAGE-LINKED</span>
           </div>
           <div class="brief-source">Official record<br />p. ${turn.page}</div>
         </article>`,
@@ -148,7 +148,7 @@ function renderInterpretation(audit) {
     ? "The selected government word share stays close to the full record."
     : `The selected government word share is ${formatPercent(Math.abs(governmentShift), 1)} ${governmentShift > 0 ? "higher" : "lower"} than the full record.`;
   interpretation.textContent =
-    `Reading the current brief: ${formatPercent(audit.speakerCoverage)} of speakers and ${formatPercent(audit.topicCoverage)} of topics remain visible. ${missing} ${shiftCopy} The representation-gap score is ${audit.representationGap.toFixed(3)}; it should be compared across alternatives, not treated as a universal quality score.`;
+    `Reading the current brief: ${formatPercent(audit.speakerCoverage)} of speakers and ${formatPercent(audit.topicCoverage)} of topics remain visible. ${missing} ${shiftCopy} The representation-gap score is ${audit.representationGap.toFixed(3)} and is most informative when compared across alternatives.`;
 }
 
 function render() {

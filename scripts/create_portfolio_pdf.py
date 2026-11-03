@@ -355,7 +355,7 @@ def record_structure(c):
     c.setFillColor(BLUE)
     c.rect(M + (PAGE_W - 2 * M) * 0.362, 351, (PAGE_W - 2 * M) * 0.638, 46, fill=1, stroke=0)
     c.setFillColor(WHITE); c.setFont(FONT_B, 10)
-    c.drawString(M + 15, 369, "MEMBERS' QUESTIONS 36.2%")
+    c.drawString(M + 15, 369, "MEMBERS’ QUESTIONS 36.2%")
     c.drawRightString(PAGE_W - M - 15, 369, "GOVERNMENT RESPONSES 63.8%")
 
     speakers = [
@@ -376,7 +376,7 @@ def record_structure(c):
 
     card(c, 657, 122, PAGE_W - M - 657, 179, WHITE, RULE)
     label(c, "Why record this?", 675, 275, ACCENT)
-    text_block(c, "A summary can look balanced while reproducing or amplifying the source's institutional imbalance. The audit therefore reports role share beside topic and speaker coverage.", 675, 245, PAGE_W - M - 693, 11, 15, FONT, INK)
+    text_block(c, "A summary can look balanced while reproducing or amplifying the source’s institutional imbalance. The audit therefore reports role share beside topic and speaker coverage.", 675, 245, PAGE_W - M - 693, 11, 15, FONT, INK)
     metric(c, 657, 53, 135, "63.8%", "baseline government share", BLUE)
 
 
@@ -517,7 +517,7 @@ def balanced_result(c):
         c.setFillColor(INK); c.setFont(FONT_B, 10.5); c.drawString(x + 18, y + 81, f"{t['id']}  {t['speaker']}")
         c.setFillColor(MUTED); c.setFont(FONT_B, 8); c.drawRightString(x + 336, y + 81, f"P. {t['page']}")
         text_block(c, t["summary"], x + 18, y + 59, 316, 10.2, 13.5, FONT, INK, 3)
-        c.setFillColor(ACCENT); c.setFont(FONT_B, 7); c.drawString(x + 18, y + 12, "AUTHOR'S PARAPHRASE / SOURCE LINKED")
+        c.setFillColor(ACCENT); c.setFont(FONT_B, 7); c.drawString(x + 18, y + 12, "AUTHOR’S PARAPHRASE / SOURCE LINKED")
 
 
 def omission_ledger(c):
@@ -589,7 +589,7 @@ def sensitivity(c):
     c.setFillColor(PAPER_DEEP); c.rect(bar_x, y, bar_w, 12, fill=1, stroke=0)
     c.setFillColor(INK); c.setFont(FONT_B, 8.5); c.drawRightString(PAGE_W - M, y + 2, "0.0%")
     card(c, 515, 66, PAGE_W - M - 515, 102, WHITE, RULE); label(c, "Interpretation", 532, 143, ACCENT)
-    text_block(c, "Five turns survive every trial. T11 and T05 compete for the sixth position, exposing the brief's unstable editorial choice.", 532, 119, PAGE_W - M - 550, 10.5, 14, FONT, INK)
+    text_block(c, "Five turns survive every trial. T11 and T05 compete for the sixth position, exposing the brief’s unstable editorial choice.", 532, 119, PAGE_W - M - 550, 10.5, 14, FONT, INK)
     metric(c, M, 66, 190, "88.7%", "mean selection overlap", BLUE); metric(c, M + 202, 66, 190, "200", "deterministic trials", BLUE)
 
 

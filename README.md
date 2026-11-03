@@ -76,8 +76,6 @@ scripts/
   fetch-source.mjs      reproducible metadata and source acquisition
   check.mjs             structural, provenance and offline checks
   create_portfolio_pdf.py
-test/
-  engine.test.mjs       deterministic data and model tests
 ```
 
 ## Primary source

@@ -1,0 +1,344 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="Yuyang Nie" />
+    <meta
+      name="description"
+      content="A provenance-first editorial audit of how public records are compressed into AI-assisted policy briefs."
+    />
+    <title>Who Gets Summarized? — Yuyang Nie</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#audit">Skip to the audit instrument</a>
+
+    <header class="masthead" aria-label="Project navigation">
+      <a class="wordmark" href="#top">WHO GETS SUMMARIZED?</a>
+      <nav>
+        <a href="#case">Case</a>
+        <a href="#method">Method</a>
+        <a href="#audit">Audit</a>
+        <a href="#code">Code</a>
+      </nav>
+      <span class="byline">Yuyang Nie · 2026</span>
+    </header>
+
+    <main id="top">
+      <section class="hero page-grid" aria-labelledby="hero-title">
+        <div class="hero-number" aria-hidden="true">01</div>
+        <div class="hero-main">
+          <p class="kicker">Live web demonstrator · HKBU AI and Digital Media portfolio</p>
+          <h1 id="hero-title">Who gets<br />summarized?</h1>
+          <p class="standfirst">
+            An interactive audit of how a 3,463-word public record becomes a six-turn policy brief.
+          </p>
+        </div>
+        <aside class="hero-note">
+          <p class="label">What is this?</p>
+          <p>
+            This is a working browser-based research prototype. Choose an editorial objective, adjust
+            eight topic priorities, then inspect which documented turns are retained or omitted. The
+            interface makes the selection rule and source pages visible before publication.
+          </p>
+        </aside>
+        <div class="hero-rule"></div>
+        <dl class="hero-facts">
+          <div><dt>Input</dt><dd>Official 11-page public record</dd></div>
+          <div><dt>Interaction</dt><dd>Three presets and eight topic controls</dd></div>
+          <div><dt>Output</dt><dd>Traceable five- or six-turn brief</dd></div>
+          <div><dt>Audit</dt><dd>Coverage, omissions and sensitivity</dd></div>
+        </dl>
+      </section>
+
+      <section class="statement ruled-section" aria-label="Project position">
+        <p class="section-index">POSITION</p>
+        <blockquote>
+          “Compression is not only a language task. It is an editorial allocation of attention.”
+        </blockquote>
+        <p>
+          Public institutions already publish rich, attributable records. The design problem begins when
+          those records are shortened for feeds, newsletters and AI-assisted briefings. A fluent paragraph
+          can conceal whether one institution dominates the word count, whether a question survives beside
+          its answer, and whether a legal concern is displaced by implementation detail. This project turns
+          those hidden choices into an interface.
+        </p>
+      </section>
+
+      <section class="case ruled-section" id="case" aria-labelledby="case-title">
+        <header class="section-heading">
+          <p class="section-index">01 / CASE RECORD</p>
+          <h2 id="case-title">One official exchange,<br />kept attached to its source.</h2>
+        </header>
+
+        <div class="source-dossier">
+          <div class="dossier-primary">
+            <p class="label">Primary source</p>
+            <h3>Official Record of Proceedings</h3>
+            <p class="large-copy">
+              The case is an oral question on AI development asked by Hon Duncan Chiu and answered by the
+              Secretary for Innovation, Technology and Industry. Six supplementary exchanges extend the
+              record into law, public-sector work, application scenarios, SME support, data governance and
+              deepfake regulation.
+            </p>
+            <div class="source-links">
+              <a href="https://www.legco.gov.hk/yr2024/english/counmtg/hansard/cm20240131-translate-e.pdf#nameddest=orq05">Official English record ↗</a>
+              <a href="https://www.legco.gov.hk/yr2024/english/counmtg/agenda/cm20240131.htm">Council agenda ↗</a>
+              <a href="https://www.legco.gov.hk/en/open-legco/open-data/hansard-database.html">Open-data documentation ↗</a>
+            </div>
+          </div>
+          <dl class="dossier-meta">
+            <div><dt>Rundown ID</dt><dd>1291567</dd></div>
+            <div><dt>Printed pages</dt><dd>49–59</dd></div>
+            <div><dt>Substantive turns</dt><dd>14</dd></div>
+            <div><dt>Named speakers</dt><dd>7</dd></div>
+            <div><dt>English words</dt><dd>3,463</dd></div>
+            <div><dt>Source checksum</dt><dd class="hash">2aa29c3…a6f0d</dd></div>
+          </dl>
+        </div>
+
+        <div class="word-share" aria-label="Word share in the official record">
+          <div class="share-copy">
+            <p class="label">A structural fact before summarization</p>
+            <h3>63.8% of the record’s words belong to the government response.</h3>
+            <p>
+              That imbalance is not presented as bias by itself; answers are expected to be longer than
+              questions. It is a baseline that a compressed brief should reveal rather than silently amplify.
+            </p>
+          </div>
+          <div class="share-graphic" role="img" aria-label="Government responses 63.8 percent, members’ questions 36.2 percent">
+            <div class="share-bar"><span class="government-share"></span></div>
+            <div class="share-key"><span>Members’ questions 36.2%</span><span>Government responses 63.8%</span></div>
+          </div>
+        </div>
+
+        <p class="source-note">
+          Data note: turn boundaries and word counts were derived from the official English translation.
+          Interface descriptions are authored paraphrases, not quotations. Each one retains its speaker,
+          turn type and printed-page anchor.
+        </p>
+      </section>
+
+      <section class="method ruled-section" id="method" aria-labelledby="method-title">
+        <header class="section-heading">
+          <p class="section-index">02 / METHOD</p>
+          <h2 id="method-title">From public record<br />to auditable brief.</h2>
+          <p class="section-intro">
+            The pipeline is deliberately hybrid: document integrity and segmentation are automated;
+            topic labels and paraphrases are reviewed by the author; selection and audit metrics are fully
+            deterministic. This division keeps the experiment reproducible without pretending that editorial
+            judgement can be removed.
+          </p>
+        </header>
+
+        <ol class="pipeline">
+          <li>
+            <span>01</span><h3>Acquire</h3>
+            <p>Resolve meeting metadata through the LegCo OData record, download the official PDF and store a SHA-256 checksum.</p>
+          </li>
+          <li>
+            <span>02</span><h3>Segment</h3>
+            <p>Split the exchange at speaker headings; preserve turn order, printed pages, role and original word count.</p>
+          </li>
+          <li>
+            <span>03</span><h3>Annotate</h3>
+            <p>Assign eight transparent topic labels and write source-linked paraphrases. No invented quotation is introduced.</p>
+          </li>
+          <li>
+            <span>04</span><h3>Select</h3>
+            <p>Combine topic relevance with speaker novelty, topic coverage and a TF–IDF redundancy penalty.</p>
+          </li>
+          <li>
+            <span>05</span><h3>Audit</h3>
+            <p>Report word retention, speaker coverage, topic coverage, government share, stability and representation gap.</p>
+          </li>
+        </ol>
+
+        <div class="method-math">
+          <div>
+            <p class="label">Selection utility</p>
+            <p class="formula">U(t) = αR(t) + βC(t) + γS(t) − δ max sim(t, s)</p>
+          </div>
+          <dl>
+            <div><dt>R</dt><dd>topic relevance and source specificity</dd></div>
+            <div><dt>C</dt><dd>new topic coverage</dd></div>
+            <div><dt>S</dt><dd>new speaker and role coverage</dd></div>
+            <div><dt>sim</dt><dd>TF–IDF cosine similarity to selected turns</dd></div>
+          </dl>
+        </div>
+        <p class="method-detail">
+          The interface also measures Jensen–Shannon divergence between the topic distribution of the complete
+          record and the selected brief. Lower divergence means the brief’s subject mix remains closer to the
+          source. Two hundred deterministic weight perturbations estimate whether a selected turn is robust or
+          depends on a narrow parameter choice. These metrics are diagnostics, not claims of political neutrality.
+        </p>
+      </section>
+
+      <section class="audit ruled-section" id="audit" aria-labelledby="audit-title">
+        <header class="section-heading">
+          <p class="section-index">03 / INTERACTIVE AUDIT</p>
+          <h2 id="audit-title">Change the brief.<br />Keep the omissions visible.</h2>
+          <p class="section-intro">
+            Choose an editorial objective or adjust it manually. The same 14 source turns are re-ranked in the
+            browser; no network request or hidden model call is involved.
+          </p>
+        </header>
+
+        <div class="audit-workbench">
+          <aside class="controls" aria-label="Editorial objective controls">
+            <div class="control-block">
+              <p class="label">Editorial preset</p>
+              <div class="preset-list" id="preset-list"></div>
+            </div>
+            <div class="control-block sliders">
+              <p class="label">Topic priorities · 0–100</p>
+              <label>Strategy <output id="strategy-value">70</output><input id="strategy" type="range" min="0" max="100" value="70" /></label>
+              <label>Infrastructure <output id="infrastructure-value">65</output><input id="infrastructure" type="range" min="0" max="100" value="65" /></label>
+              <label>Work and talent <output id="labour-value">75</output><input id="labour" type="range" min="0" max="100" value="75" /></label>
+              <label>Law and regulation <output id="regulation-value">90</output><input id="regulation" type="range" min="0" max="100" value="90" /></label>
+              <label>Public applications <output id="application-value">70</output><input id="application" type="range" min="0" max="100" value="70" /></label>
+              <label>SME adoption <output id="sme-value">70</output><input id="sme" type="range" min="0" max="100" value="70" /></label>
+              <label>Data governance <output id="data-value">75</output><input id="data" type="range" min="0" max="100" value="75" /></label>
+              <label>Safety and deepfakes <output id="safety-value">90</output><input id="safety" type="range" min="0" max="100" value="90" /></label>
+              <label class="compression">Turns retained <output id="size-value">6</output><input id="size" type="range" min="4" max="7" value="6" /></label>
+            </div>
+          </aside>
+
+          <div class="brief-panel">
+            <div class="brief-head">
+              <div><p class="label">Generated editorial brief</p><h3 id="brief-title">Balanced public record</h3></div>
+              <p id="brief-note"></p>
+            </div>
+            <div class="metric-grid" id="metric-grid" aria-live="polite"></div>
+            <div class="brief-output" id="brief-output" aria-live="polite"></div>
+          </div>
+        </div>
+
+        <div class="ledger-wrap">
+          <div class="ledger-head">
+            <div><p class="label">Source ledger</p><h3>Every selected and omitted turn</h3></div>
+            <p>Blue rows are retained. Unselected rows remain readable and linked to the same official record.</p>
+          </div>
+          <div class="ledger" id="turn-ledger"></div>
+        </div>
+      </section>
+
+      <section class="results ruled-section" id="results" aria-labelledby="results-title">
+        <header class="section-heading">
+          <p class="section-index">04 / FINDINGS</p>
+          <h2 id="results-title">A result should show<br />how fragile it is.</h2>
+        </header>
+        <div class="finding-grid">
+          <article>
+            <p class="finding-number" id="stability-score">—</p>
+            <h3>Mean selection overlap</h3>
+            <p>
+              Across 200 seeded ±18% perturbations of topic weights, measured against the current selection with
+              Jaccard overlap. A lower value warns that the brief is parameter-sensitive.
+            </p>
+          </article>
+          <article>
+            <p class="finding-number" id="pareto-count">—</p>
+            <h3>Non-dominated alternatives</h3>
+            <p>
+              Alternative briefs remain on the Pareto frontier when no other selection is simultaneously better
+              in average relevance, topic-distribution fidelity and speaker coverage.
+            </p>
+          </article>
+          <article>
+            <p class="finding-number">100%</p>
+            <h3>Page-level traceability</h3>
+            <p>
+              Every displayed paraphrase retains a turn ID, speaker, role and printed-page location. The system
+              never presents a generated sentence as a source quotation.
+            </p>
+          </article>
+        </div>
+        <div class="stability-panel">
+          <div>
+            <p class="label">Inclusion frequency · 200 perturbations</p>
+            <h3>Which turns survive small changes?</h3>
+          </div>
+          <div class="stability-chart" id="stability-chart"></div>
+        </div>
+        <p class="interpretation" id="interpretation"></p>
+      </section>
+
+      <section class="code ruled-section" id="code" aria-labelledby="code-title">
+        <header class="section-heading">
+          <p class="section-index">05 / CODE AND REPRODUCIBILITY</p>
+          <h2 id="code-title">The mechanism is part<br />of the evidence.</h2>
+          <p class="section-intro">
+            The repository contains the sourced data model, deterministic selection engine, stability analysis,
+            Pareto search, interface and tests. Runtime code has no external dependency, analytics package, API
+            key or remote model call.
+          </p>
+        </header>
+
+        <div class="code-grid">
+          <pre aria-label="Selection utility code"><code>const utility =
+  objective.relevance * relevance +
+  objective.topicCoverage * topicNovelty +
+  objective.speakerDiversity * (
+    .78 * speakerNovelty + .22 * roleNovelty
+  ) -
+  objective.redundancyPenalty * redundancy;</code></pre>
+          <div class="repo-map">
+            <p class="label">Repository map</p>
+            <pre><code>dist/src/
+├── data.js       source record + 14 turns
+├── engine.js     TF–IDF, MMR, JSD, stability
+└── app.js        interaction + audit rendering
+
+scripts/
+├── fetch-source.mjs
+├── check.mjs
+└── create_portfolio_pdf.py
+
+test/engine.test.mjs</code></pre>
+          </div>
+        </div>
+
+        <div class="technical-notes">
+          <article><h3>Source integrity</h3><p>The official PDF checksum, OData identifiers, retrieval date and page anchors are stored beside the derived data.</p></article>
+          <article><h3>Representation metric</h3><p>Jensen–Shannon divergence compares full-record and brief topic distributions on a bounded, symmetric scale.</p></article>
+          <article><h3>Sensitivity</h3><p>A seeded xorshift generator perturbs weights reproducibly; inclusion frequency exposes unstable selections.</p></article>
+          <article><h3>Test surface</h3><p>Tests cover corpus totals, provenance, determinism, role coverage, redundancy, divergence, stability and Pareto dominance.</p></article>
+        </div>
+      </section>
+
+      <section class="limits ruled-section" aria-labelledby="limits-title">
+        <header class="section-heading">
+          <p class="section-index">06 / LIMITS</p>
+          <h2 id="limits-title">What the prototype<br />does not claim.</h2>
+        </header>
+        <div class="limits-grid">
+          <article><h3>Not automatic truth assessment</h3><p>The system ranks documented turns; it does not infer whether a speaker’s claim is correct.</p></article>
+          <article><h3>Not politically neutral</h3><p>Topic labels, paraphrases and metric weights are editorial decisions. The interface exposes them so they can be challenged.</p></article>
+          <article><h3>One translated record</h3><p>The study uses the official English translation of one exchange. It does not generalise to the whole legislature or Chinese-language nuance.</p></article>
+          <article><h3>No false quotation</h3><p>Displayed summaries are labelled paraphrases. Readers must return to the official record for exact wording and context.</p></article>
+        </div>
+      </section>
+
+      <section class="closing">
+        <p class="section-index">REFLECTION</p>
+        <blockquote>
+          “I designed the project as a small editorial instrument: not to automate judgement, but to make the
+          distribution of attention reviewable before a summary becomes the record.”
+        </blockquote>
+        <div class="closing-meta">
+          <p><span>Author</span>Yuyang Nie</p>
+          <p><span>Role</span>Research, data modelling, interaction design, visual design and front-end engineering</p>
+          <p><span>Primary source</span>Legislative Council Official Record of Proceedings, 31 January 2024, pp. 49–59</p>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p>WHO GETS SUMMARIZED? · YUYANG NIE · 2026</p>
+      <p>Built as a transparent browser-based research prototype.</p>
+    </footer>
+    <script type="module" src="./src/app.js"></script>
+  </body>
+</html>
